@@ -4,14 +4,15 @@ import { makeFirstTableMarkup } from "../markup";
 import { jsTbodyEl } from "../refs";
 import { addMarkup } from "../utils";
 
-getData("users")
-  .then((data) => {
+async function init() {
+  try {
+    const data = await getData("users");
     const markup = makeFirstTableMarkup(data);
     addMarkup(markup, jsTbodyEl);
-  })
-  .catch((error) => {
+  } catch (error) {
     Notiflix.Notify.failure(error.message);
-  });
+  }
+}
 
 const getUserId = (e) => {
   const el = e.target.closest("tr");
@@ -22,4 +23,5 @@ const getUserId = (e) => {
   location.href = `user.html?user-id=${userId}`;
 };
 
+window.addEventListener("load", init);
 jsTbodyEl.addEventListener("click", getUserId);
