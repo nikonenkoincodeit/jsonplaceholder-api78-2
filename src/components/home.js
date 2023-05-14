@@ -10,7 +10,6 @@ getData("users")
     addMarkup(markup, jsTbodyEl);
   })
   .catch((error) => {
-    console.log(error);
     Notiflix.Notify.failure(error.message);
   });
 
@@ -21,8 +20,6 @@ const getUserId = (e) => {
   }
   const userId = el.getAttribute("data-userid");
   location.href = `user.html?user-id=${userId}`;
-
-  console.log(el);
 };
 
 jsTbodyEl.addEventListener("click", getUserId);
