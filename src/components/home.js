@@ -13,3 +13,16 @@ getData("users")
     console.log(error);
     Notiflix.Notify.failure(error.message);
   });
+
+const getUserId = (e) => {
+  const el = e.target.closest("tr");
+  if (el.nodeName !== "TR") {
+    return;
+  }
+  const userId = el.getAttribute("data-userid");
+  location.href = `user.html?user-id=${userId}`;
+
+  console.log(el);
+};
+
+jsTbodyEl.addEventListener("click", getUserId);
